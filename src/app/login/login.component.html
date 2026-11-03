@@ -11,7 +11,8 @@
           <label class="form-label">Password</label>
           <input type="password" class="form-control" formControlName="password">
         </div>
-        <button class="bt btn-success">Login</button>
+        <div class="text-danger mb-3" *ngIf="errorMessage">{{errorMessage}}</div>
+        <button class="btn btn-success">Login</button>
       </form>
     </div>
   </div>

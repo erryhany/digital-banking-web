@@ -2,20 +2,18 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AccountDetails} from "../model/account.model";
 import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountsService {
-  backendHost:string="http://localhost:8085";
+  backendHost:string=environment.backendHost;
   constructor(private http : HttpClient) { }
 
 
   public getAccount(accountId: string,page:number,size:number):Observable<AccountDetails>{
-    console.log('Fetching account:', accountId, 'page:', page, 'size:', size);
-    const url = this.backendHost+"/accounts/"+accountId+"/PageOperations?page="+page+"&size="+size;
-    console.log('URL:', url);
-    return this.http.get<AccountDetails>(url);
+    return this.http.get<AccountDetails>(this.backendHost+"/accounts/"+accountId+"/PageOperations?page="+page+"&size="+size);
   }
 
   public debit(accountId: string,amount:number,description:string){

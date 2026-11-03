@@ -27,7 +27,7 @@ newCutomerFormGroup! : FormGroup;
       next : data=>{
         alert("Customer saved successfully!");
         //this.newCutomerFormGroup.reset();
-        this.router.navigate(['/customers']);
+        this.router.navigate(['/admin/customers']);
       },
       error : err=>{
         console.log(err);

@@ -39,21 +39,6 @@ errorMessage : String;
         return throwError(err);
       })
     );
-
-    // Log pour voir les données reçues
-    this.accountObservable.subscribe({
-      next: (accountDetails) => {
-        console.log('=== ACCOUNT DETAILS RECEIVED ===');
-        console.log('Account ID:', accountDetails.accountId);
-        console.log('Balance:', accountDetails.balance);
-        console.log('Total Pages:', accountDetails.totalPages);
-        console.log('Operations:', accountDetails.accountOperationDTOS);
-        console.log('===============================');
-      },
-      error: (error) => {
-        console.error('Error fetching account:', error);
-      }
-    });
   }
 
   gotoPage(page: number) {

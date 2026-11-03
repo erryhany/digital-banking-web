@@ -29,6 +29,7 @@ export class CustomersComponent implements OnInit {
     let kw=this.searchFormGroup?.value.keyword;
     this.customers=this.customerService.searchCustomer(kw).pipe(
       catchError(err=>{
+        this.errorMessage=err.message;
         return throwError(err);
       })
     );
@@ -41,9 +42,7 @@ export class CustomersComponent implements OnInit {
       next:value => {
         this.customers=this.customers.pipe(
           map(data=>{
-            let index=data.indexOf(c);
-            data.slice(index,1);
-            return data;
+            return data.filter(customer=>customer.id!==c.id);
           })
         );
       },
@@ -54,7 +53,7 @@ export class CustomersComponent implements OnInit {
   }
 
   handleCustumerAccounts(c: Customer) {
-  this.router.navigateByUrl("/customer-accounts/"+c.id,{state:c});
+  this.router.navigateByUrl("/admin/customer-accounts/"+c.id,{state:c});
 
   }
 }

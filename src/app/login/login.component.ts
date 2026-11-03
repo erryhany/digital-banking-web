@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
+  errorMessage: string = "";
   constructor(private fb: FormBuilder,private authservice: AuthService,private  router : Router) { }
 
   ngOnInit(): void {
@@ -25,10 +26,10 @@ export class LoginComponent implements OnInit {
     this.authservice.login(username, pwd).subscribe({
       next: (result) => {
         this.authservice.loadProfile(result);
-        this.router.navigateByUrl("/admin");
+        this.router.navigateByUrl("/admin/customers");
       },
       error: (error) => {
-        console.log(error);
+        this.errorMessage = "Invalid username or password";
       }
     })
   }
