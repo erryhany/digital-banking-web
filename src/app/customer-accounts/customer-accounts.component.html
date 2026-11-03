@@ -1,0 +1,17 @@
+<div class="container mt-2">
+  <div class="card">
+    <div class="card-header">Customer #{{customerId}}</div>
+    <div class="card-body" *ngIf="customer; else noState">
+      <div class="mb-2"><label>Name :</label> <strong>{{customer.name}}</strong></div>
+      <div class="mb-2"><label>Email :</label> <strong>{{customer.email}}</strong></div>
+      <a class="btn btn-info" routerLink="/admin/accounts">
+        <i class="bi bi-search"></i> Search an account
+      </a>
+    </div>
+    <ng-template #noState>
+      <div class="card-body">
+        <a class="btn btn-secondary" routerLink="/admin/customers">Back to customers</a>
+      </div>
+    </ng-template>
+  </div>
+</div>
